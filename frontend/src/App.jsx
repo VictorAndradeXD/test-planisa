@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import CreateBenchmark from './pages/CreateBenchmark';
 import Benchmark from './pages/Benchmark';
+import EditBenchmark from './pages/EditBenchmark';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<CreateBenchmark />} />
         <Route path="/benchmark/:id" element={<Benchmark />} />
+        <Route path="/benchmark/:id/edit" element={<EditBenchmark />} />
       </Routes>
     </Router>
   );

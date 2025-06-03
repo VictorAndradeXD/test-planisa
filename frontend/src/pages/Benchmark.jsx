@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import api from '../services/api';
 
 function Benchmark() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [benchmark, setBenchmark] = useState(null);
 
   useEffect(() => {
@@ -11,6 +12,14 @@ function Benchmark() {
       .then(response => setBenchmark(response.data))
       .catch(err => console.error(err));
   }, [id]);
+
+  const handleDelete = () => {
+    if (window.confirm('Deseja realmente excluir este benchmark?')) {
+      api.delete(`/covid_benchmarks/${id}`)
+        .then(() => navigate('/'))
+        .catch(err => console.error(err));
+    }
+  };
 
   if (!benchmark) return <div className="container">Carregando...</div>;
 
@@ -25,7 +34,6 @@ function Benchmark() {
         benchmark.covid_results.map(result => (
           <div key={result.id} className="card">
             <p><strong>{result.country}</strong></p>
-            <p>Data: {result.date}</p>
             <p>Casos: {result.cases}</p>
             <p>Mortes: {result.deaths}</p>
           </div>
@@ -33,6 +41,15 @@ function Benchmark() {
       ) : (
         <p>Nenhum resultado encontrado.</p>
       )}
+
+      <div style={{ marginTop: '20px' }}>
+        <Link to={`/benchmark/${id}/edit`}>
+          <button style={{ marginRight: '10px' }}>Editar</button>
+        </Link>
+        <button onClick={handleDelete} style={{ backgroundColor: 'red' }}>
+          Deletar
+        </button>
+      </div>
     </div>
   );
 }

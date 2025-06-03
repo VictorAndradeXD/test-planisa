@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 function CreateBenchmark() {
   const [form, setForm] = useState({
     name: '',
-    country_a: 'Brazil',
-    country_b: 'Canada',
+    country_a: 'brazil',
+    country_b: 'canada',
     start_date: '',
     end_date: '',
   });
