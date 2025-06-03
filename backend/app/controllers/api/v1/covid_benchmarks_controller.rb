@@ -60,10 +60,11 @@ module Api
 
             benchmark.covid_results.create!(
               country: country,
-              confirmed: data["confirmed"] || 0,
-              deaths: data["deaths"] || 0,
+              confirmed: data["total"] || 0,
+              new_cases: data["new"] || 0,
               date: date
             )
+
           end
         end
       end
@@ -73,7 +74,7 @@ module Api
         require "uri"
         require "json"
 
-        url = URI("https://api.api-ninjas.com/v1/covid19?country=#{country}&date=#{date}")
+        url = URI("https://api.api-ninjas.com/v1/covid19?country=#{country}")
 
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
@@ -85,7 +86,17 @@ module Api
 
         if response.code.to_i == 200
           parsed = JSON.parse(response.body)
-          parsed.first
+
+          region_data = parsed.find { |entry| entry["region"] == "" } || parsed.first
+          return nil unless region_data
+
+          date_data = region_data["cases"][date.to_s]
+          return nil unless date_data
+
+          {
+            "total" => date_data["total"] || 0,
+            "new" => date_data["new"] || 0
+          }
         else
           Rails.logger.error "Erro na API Ninjas: #{response.code} - #{response.body}"
           nil

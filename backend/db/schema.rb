@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_02_114121) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_03_214905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -29,10 +29,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_02_114121) do
     t.bigint "covid_benchmark_id", null: false
     t.string "country"
     t.integer "confirmed"
-    t.integer "deaths"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "new_cases", default: 0
     t.index ["covid_benchmark_id"], name: "index_covid_results_on_covid_benchmark_id"
   end
 

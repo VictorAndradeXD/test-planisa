@@ -30,12 +30,13 @@ function Benchmark() {
       <p><strong>Período:</strong> {benchmark.start_date} até {benchmark.end_date}</p>
 
       <h3>Resultados</h3>
+      {console.log(benchmark)}
       {benchmark.covid_results?.length > 0 ? (
         benchmark.covid_results.map(result => (
           <div key={result.id} className="card">
             <p><strong>{result.country}</strong></p>
-            <p>Casos: {result.cases}</p>
-            <p>Mortes: {result.deaths}</p>
+            <p>Total de Casos: {result.confirmed}</p>
+            <p>Casos Novos: {result.new_cases}</p>
           </div>
         ))
       ) : (
