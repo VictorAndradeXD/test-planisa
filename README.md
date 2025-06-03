@@ -3,7 +3,7 @@
 
 Uma aplicação para Teste da Empresa Planiza que é uma API em Rails com Front-end em React que permite comparar dados de casos de COVID-19 entre dois países em um determinado período.
 
-## 📜 Históricp
+## 📜 Histórico
 
 Este projeto foi desenvolvido com o objetivo de gerar benchmarks entre países, permitindo comparar a evolução dos **novos casos** de COVID-19 em períodos específicos. A parte de rails que era meu forte não foi muito difícil de fazer apenas tive um desafio em fazer uma aplicação ser uma API para consumo do Front, que eu não tinha tido a oportunidade de fazer ainda, mas com um pouco de pesquisa foi feito corretamente.
 
