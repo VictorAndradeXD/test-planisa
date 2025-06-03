@@ -12,23 +12,24 @@ function Benchmark() {
       .catch(err => console.error(err));
   }, [id]);
 
-  if (!benchmark) return <div className="p-4">Carregando...</div>;
+  if (!benchmark) return <div className="container">Carregando...</div>;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl mb-4">{benchmark.name}</h2>
-      <p><strong>Período:</strong> {benchmark.start_date} a {benchmark.end_date}</p>
+    <div className="container">
+      <h2>{benchmark.name}</h2>
       <p><strong>De:</strong> {benchmark.country_a} <strong>Para:</strong> {benchmark.country_b}</p>
+      <p><strong>Período:</strong> {benchmark.start_date} até {benchmark.end_date}</p>
 
-      <h3 className="text-xl mt-6 mb-2">Resultados</h3>
+      <h3>Resultados</h3>
       {benchmark.covid_results?.length > 0 ? (
-        <ul className="space-y-2">
-          {benchmark.covid_results.map(r => (
-            <li key={r.id} className="p-3 border rounded">
-              {r.country}: {r.cases} casos, {r.deaths} mortes
-            </li>
-          ))}
-        </ul>
+        benchmark.covid_results.map(result => (
+          <div key={result.id} className="card">
+            <p><strong>{result.country}</strong></p>
+            <p>Data: {result.date}</p>
+            <p>Casos: {result.cases}</p>
+            <p>Mortes: {result.deaths}</p>
+          </div>
+        ))
       ) : (
         <p>Nenhum resultado encontrado.</p>
       )}

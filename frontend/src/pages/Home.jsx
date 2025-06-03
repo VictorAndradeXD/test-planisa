@@ -12,18 +12,19 @@ function Home() {
   }, []);
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl mb-4">Benchmarks Criados</h2>
-      <ul className="space-y-2">
-        {benchmarks.map(b => (
-          <li key={b.id} className="p-4 border rounded shadow">
-            <Link to={`/benchmark/${b.id}`} className="text-blue-600 font-bold">
+    <div className="container">
+      <h2>Benchmarks Criados</h2>
+      {benchmarks.length === 0 && <p>Nenhum benchmark criado.</p>}
+      {benchmarks.map(b => (
+        <div key={b.id} className="card">
+          <h3>
+            <Link to={`/benchmark/${b.id}`}>
               {b.name}
             </Link>
-            <div>De {b.country_a} para {b.country_b}</div>
-          </li>
-        ))}
-      </ul>
+          </h3>
+          <p>{b.country_a} vs {b.country_b}</p>
+        </div>
+      ))}
     </div>
   );
 }

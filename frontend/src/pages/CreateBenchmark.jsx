@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 function CreateBenchmark() {
   const [form, setForm] = useState({
     name: '',
-    country_a: '',
-    country_b: '',
+    country_a: 'Brazil',
+    country_b: 'Canada',
     start_date: '',
     end_date: '',
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,15 +25,60 @@ function CreateBenchmark() {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl mb-4">Criar Novo Benchmark</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input className="border p-2 w-full" name="name" placeholder="Nome" onChange={handleChange} required />
-        <input className="border p-2 w-full" name="country_a" placeholder="País A" onChange={handleChange} required />
-        <input className="border p-2 w-full" name="country_b" placeholder="País B" onChange={handleChange} required />
-        <input className="border p-2 w-full" name="start_date" type="date" onChange={handleChange} required />
-        <input className="border p-2 w-full" name="end_date" type="date" onChange={handleChange} required />
-        <button className="bg-blue-600 text-white p-2 rounded">Criar</button>
+    <div className="container">
+      <h2>Criar Novo Benchmark</h2>
+      <form onSubmit={handleSubmit}>
+        <input 
+          name="name" 
+          placeholder="Nome do Benchmark" 
+          value={form.name}
+          onChange={handleChange} 
+          required 
+        />
+
+        <label>País A:</label>
+        <select 
+          name="country_a" 
+          value={form.country_a} 
+          onChange={handleChange}
+          required
+        >
+          <option value="brazil">Brazil</option>
+          <option value="canada">Canada</option>
+          <option value="argentina">Argentina</option>
+        </select>
+
+        <label>País B:</label>
+        <select 
+          name="country_b" 
+          value={form.country_b} 
+          onChange={handleChange}
+          required
+        >
+          <option value="brazil">Brazil</option>
+          <option value="canada">Canada</option>
+          <option value="argentina">Argentina</option>
+        </select>
+
+        <label>Data Inicial:</label>
+        <input 
+          name="start_date" 
+          type="date" 
+          value={form.start_date} 
+          onChange={handleChange} 
+          required 
+        />
+
+        <label>Data Final:</label>
+        <input 
+          name="end_date" 
+          type="date" 
+          value={form.end_date} 
+          onChange={handleChange} 
+          required 
+        />
+
+        <button type="submit">Criar Benchmark</button>
       </form>
     </div>
   );
