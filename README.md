@@ -1,5 +1,5 @@
 EN - US
-
+---
 # 🦠 COVID-19 Benchmark
 
 An application developed as a test for the company Planiza. It is a Rails API with a React Front-end that allows comparing COVID-19 case data between two countries over a specific period.
@@ -149,6 +149,7 @@ Made with ❤️ by [Victor Andrade](https://github.com/VictorAndradeXD)
 
 This project is under the MIT license. See the [LICENSE](LICENSE) file for more details.
 
+---
 
 PT-BR
 # 🦠 COVID-19 Benchmark
